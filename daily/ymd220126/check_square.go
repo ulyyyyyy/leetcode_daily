@@ -13,32 +13,42 @@ package ymd220126
 // int count(int[] point) 统计按上述方式与点 point = [x, y] 共同构造 轴对齐正方形 的方案数。
 
 type DetectSquares struct {
-	points map[int][]int
+	points map[int]map[int]int
 }
 
 func Constructor() DetectSquares {
-	return DetectSquares{points: make(map[int][]int, 0)}
+	return DetectSquares{points: make(map[int]map[int]int)}
 }
 
 func (ds *DetectSquares) Add(point []int) {
-	ds.points[point[0]] = append(ds.points[point[0]], point[1])
+	if m, ok := ds.points[point[0]]; ok {
+		m[point[1]]++
+	} else {
+		ds.points[point[0]] = make(map[int]int)
+		ds.points[point[0]][point[1]]++
+	}
 }
 
 func (ds *DetectSquares) Count(point []int) (count int) {
+	// 等待校验点的横、纵坐标
 	x, y := point[0], point[1]
 
+	// 该相同行的坐标
 	allowedPoint := ds.points[x]
 	if len(allowedPoint) == 0 {
 		return 0
 	}
-	for _, p := range allowedPoint {
+	// 遍历相同行的坐标，找到可能的正方形
+	for p, num := range allowedPoint {
 		if p == y {
 			continue
 		}
 
 		distance := y - p
-		if bp, ok := ds.points[x-distance]; ok {
-			// TODO 添加逻辑
+		for _, d := range []int{x - distance, x + distance} {
+			m := ds.points[d][y]
+			n := ds.points[d][p]
+			count += m * n * num
 		}
 	}
 	return count
