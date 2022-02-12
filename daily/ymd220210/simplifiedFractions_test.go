@@ -27,7 +27,7 @@ func Test_simplifiedFractions(t *testing.T) {
 		{
 			name:     "最简分数-测试用例3",
 			args:     args{n: 4},
-			wantRlts: []string{"1/2", "1/3", "1/4", "2/3", "3/4"},
+			wantRlts: []string{"1/2", "1/3", "2/3", "1/4", "3/4"},
 		},
 	}
 	for _, tt := range tests {
