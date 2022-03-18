@@ -10,6 +10,9 @@ func findRestaurant(list1 []string, list2 []string) (restaurants []string) {
 		tmpMap[v] = i
 	}
 	for secondIndex, v := range list2 {
+		if secondIndex > min {
+			break
+		}
 		if firstIndex, ok := tmpMap[v]; ok {
 			total := firstIndex + secondIndex
 			// 如果最小值更新，那么重置参数数量
