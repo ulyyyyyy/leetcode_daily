@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func convertToBase(num int, r int) (ans string) {
+func ConvertToBase(num int, r int) (ans string) {
 	if num < r && num >= 0 {
 		return strconv.Itoa(num)
 	}

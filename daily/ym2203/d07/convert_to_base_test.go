@@ -23,8 +23,8 @@ func Test_convertToBase(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotAns := convertToBase(tt.args.num, tt.args.r); gotAns != tt.wantAns {
-				t.Errorf("convertToBase() = %v, want %v", gotAns, tt.wantAns)
+			if gotAns := ConvertToBase(tt.args.num, tt.args.r); gotAns != tt.wantAns {
+				t.Errorf("ConvertToBase() = %v, want %v", gotAns, tt.wantAns)
 			}
 		})
 	}
